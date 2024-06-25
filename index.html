@@ -3,19 +3,24 @@
     <head>
         <meta charset="UTF-8">
         <title>Rock Paper Scissors</title>
-        <script src="rockPaper.js"></script>
+        <script src="rockPaper.js" defer></script>
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <h1>Roc Ppr Scissors. Open the console using <strong>FN+F12</strong> to play the game</h1>
-        <p>If you don't know how to play rock paper scissors then that's another problem</p>
-        <p>When you're ready. Type <strong>playGame();</strong> in the console. Good Luck!</p>
-        <p>Each game is <strong>5 rounds long.</strong> Each round, the page will prompt you to enter your selection between: </p>
-        <ul>
-            <li>Rock</li>
-            <li>Paper</li>
-            <li>Scissors</li>
-        </ul>
-        <h2>:)</h2>
+        <h1>ROCK PAPER SCISSORS</h1>
+        <h2>Choose your hand by clicking a button. First to 5 wins. U vs. tha Computer.</h2>
+        <div class="btnContainer">
+            <button class="rockBtn selection">Rock</button>
+            <button class="paperBtn selection">Paper</button>
+            <button class="scissorsBtn selection">Scissors</button>
+        </div>
+        <div class="scoreContainer">
+            <p class="roundResults">Round Results:</p>
+            <h3 class="gamesPlayed">Games played: 0</h3>
+            <h3 class="userScore">User Score: 0</h3>
+            <h3 class="compScore">Computer Score: 0</h3>
+            <h2 class="finalResults">WHO WILL TAKE THE WIN??</h2>
+        </div>
+
     </body>
 </html>

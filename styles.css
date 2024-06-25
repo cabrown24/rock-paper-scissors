@@ -1,7 +1,26 @@
 body {
     font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #5C415D;
+    color: #F6F7EB;
 }
 
-strong {
-    color: rgb(171, 47, 224);
+.btnContainer {
+    box-sizing: border-box;
+    width: 500px;
+    background-color: #C99DA3;
+    border: 2px solid #04A777;
+}
+
+.roundResults {
+    color: #E94F37;
+}
+
+
+button {
+    border-radius: 5px;
+    background-color: yellow;
+    color: black;
+    width: 100px;
+    height: 50px;
+    margin: 25px;
 }

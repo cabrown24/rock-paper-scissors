@@ -12,30 +12,38 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let userChoice = '';
-    let keepAsking = true;
-    while (keepAsking) {
-
-        userChoice = prompt("Enter your hand: ");
-        userChoice = userChoice.toLowerCase();
-
-        if ((userChoice != 'rock') && (userChoice != 'paper') && (userChoice != 'scissors')) {
-            console.log("You have to choose between: rock, paper, or scissors.");
-        }
-        else {
-            keepAsking = false;
-        }
-    }
-
-    return userChoice;
-}
-
 function playGame() {
 
     let computerScore = 0;
     let humanScore = 0;
-    let gamesPlayed = 0;
+    let computerChoice = '';
+    let humanChoice = '';
+    const gamesPlayed = 0;
+
+    const rock = document.querySelector(".rockBtn");
+    const paper = document.querySelector(".paperBtn");
+    const scissors = document.querySelector(".scissorsBtn");
+    const roundResults = document.querySelector(".roundResults");
+
+    rock.addEventListener("click", () => {
+        let computerChoice = getComputerChoice();
+        let humanChoice = "rock";
+        playRound(computerChoice, humanChoice);
+    });
+
+    paper.addEventListener("click", () => {
+        let computerChoice = getComputerChoice();
+        let humanChoice = "paper";
+        playRound(computerChoice, humanChoice);
+    });
+
+    scissors.addEventListener("click", () => {
+        let computerChoice = getComputerChoice();
+        let humanChoice = "scissors";
+        playRound(computerChoice, humanChoice);
+    });
+
+    
 
     function playRound(computerChoice, humanChoice) {
         if (computerChoice == humanChoice) {
@@ -85,9 +93,14 @@ function playGame() {
 
     }
 
-    while (gamesPlayed < 5) {
+
+
+
+    //BEST OF 5 ROUNDS LOGIC
+
+    while (humanScore < 5 && computerScore < 5) {
         let computerChoice = getComputerChoice();
-        let humanChoice = getHumanChoice();
+        let humanChoice = getHumanChoice();          // CHANGE TO CHECK BUTTON VALUE
         playRound(computerChoice, humanChoice);
         gamesPlayed++;
     }
@@ -106,9 +119,8 @@ function playGame() {
 
 }
 
-// console.log("\n");
-// console.log(`Human Choice: ${humanChoice}\n`);
-// console.log(`Computer Choice: ${computerChoice}`);
+playGame();
+
 
 
 
