@@ -16,14 +16,17 @@ function playGame() {
 
     let computerScore = 0;
     let humanScore = 0;
-    let computerChoice = '';
-    let humanChoice = '';
-    const gamesPlayed = 0;
+    let gamesPlayed = 0;
 
+    const btnContainer = document.querySelector("btnContainer");
     const rock = document.querySelector(".rockBtn");
     const paper = document.querySelector(".paperBtn");
     const scissors = document.querySelector(".scissorsBtn");
     const roundResults = document.querySelector(".roundResults");
+    const gamesPlayedLabel = document.querySelector(".gamesPlayed");
+    const userScore = document.querySelector(".userScore");
+    const compScore = document.querySelector(".compScore");
+    const finalResults = document.querySelector(".finalResults");
 
     rock.addEventListener("click", () => {
         let computerChoice = getComputerChoice();
@@ -43,11 +46,14 @@ function playGame() {
         playRound(computerChoice, humanChoice);
     });
 
-    
+
 
     function playRound(computerChoice, humanChoice) {
+
+        // - - - - - - - - round evalutation - - - - - - - -
+
         if (computerChoice == humanChoice) {
-            console.log(`TIE! ${computerChoice} vs. ${humanChoice}`);
+            roundResults.textContent = `TIE! ${computerChoice} vs. ${humanChoice}`;
         }
 
         //humanChoice is rock, 
@@ -55,11 +61,11 @@ function playGame() {
         else if (humanChoice == 'rock') {
             if (computerChoice == 'scissors') {
                 humanScore++;
-                console.log("Yu WIN! Your Rock crushes the computer's poor scissors.");
+                roundResults.textContent = "Yu WIN! Your Rock crushes the computer's poor scissors.";
             }
             else {
                 computerScore++;
-                console.log("Yu LOSE! The computer's paper encapsulates your measely rock..")
+                roundResults.textContent = "Yu LOSE! The computer's paper encapsulates your measely rock..";
             }
         }
 
@@ -68,11 +74,11 @@ function playGame() {
         else if (humanChoice == 'paper') {
             if (computerChoice == 'scissors') {
                 computerScore++;
-                console.log("Yu LOSE! The computer's Scissors cut your thin Paper to shreds.");
+                roundResults.textContent = "Yu LOSE! The computer's Scissors cut your thin Paper to shreds.";
             }
             else {
                 humanScore++;
-                console.log("Yu WIN! Your paper encapsulates the computer's measely rock..")
+                roundResults.textContent = "Yu WIN! Your paper encapsulates the computer's measely rock..";
             }
         }
 
@@ -82,39 +88,47 @@ function playGame() {
         else if (humanChoice == 'scissors') {
             if (computerChoice == 'rock') {
                 computerScore++;
-                console.log("Yu LOSE! The computer's Rock crushes your poor scissors.");
+                roundResults.textContent = "Yu LOSE! The computer's Rock crushes your poor scissors.";
             }
 
             else {
                 humanScore++;
-                console.log("Yu WIN! Your scissors cut the computer's paper to shreds.");
+                roundResults.textContent = "Yu WIN! Your scissors cut the computer's paper to shreds.";
             }
         }
 
-    }
+        // - - - - - ROUND EVALUATION ENDS - - - - - - - -
 
-
-
-
-    //BEST OF 5 ROUNDS LOGIC
-
-    while (humanScore < 5 && computerScore < 5) {
-        let computerChoice = getComputerChoice();
-        let humanChoice = getHumanChoice();          // CHANGE TO CHECK BUTTON VALUE
-        playRound(computerChoice, humanChoice);
         gamesPlayed++;
-    }
+        gamesPlayedLabel.textContent = gamesPlayed;
+        userScore.textContent = humanScore;
+        compScore.textContent = computerScore;
 
-    if (computerScore > humanScore) {
-        console.log(`Sorry, yu LOST.. The Final Score was ${computerScore}-${humanScore}`);
-    }
+        //BEST OF 5 ROUNDS LOGIC
 
-    else if (humanScore > computerScore) {
-        console.log(`Well done, you have WON.. The final score was ${humanScore}-${computerScore}`);
-    }
+        if (computerScore === 5 || humanScore === 5) {
 
-    else {
-        console.log(`You and the computer TIED.. The final score was ${humanScore}-${computerScore}`);
+            rock.remove();
+            paper.remove();
+            scissors.remove();
+
+            if (computerScore > humanScore) {
+                finalResults.textContent = `Sorry, yu LOST.. The Final Score was ${computerScore}-${humanScore}`;
+            }
+
+            else if (humanScore > computerScore) {
+                finalResults.textContent = `Well done, you have WON.. The final score was ${humanScore}-${computerScore}`;
+            }
+
+            else {
+                finalResults.textContent = `You and the computer TIED.. The final score was ${humanScore}-${computerScore}`;
+            }
+
+
+
+
+        }
+
     }
 
 }
